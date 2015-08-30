@@ -14,7 +14,7 @@ Just add as dependency and done. (I'll push it to hackage soon™)
 This library is named after me for two reasons:
 
 1. because it is an opinionated library of things that I thought were necessary and
-2. because naming it and the included mocules something generic is not cool, if it is not generig by design (like the `extra` library)
+2. because naming it and the included modules something generic is not cool, if it is not generic by design (like the `extra` library)
 
 ## Documentation
 
