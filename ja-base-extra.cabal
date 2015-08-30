@@ -19,6 +19,8 @@ library
   exposed-modules:
     Data.List.JAExtra
     Data.Tuple.JAExtra
+    Data.Maybe,JAExtra
+    Data.Function.JAExtra
   -- other-modules:
   -- other-extensions:
   build-depends:       base >= 4.0
