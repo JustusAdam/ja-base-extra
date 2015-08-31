@@ -1,12 +1,15 @@
 {-# LANGUAGE UnicodeSyntax #-}
 module Data.Maybe.JAExtra
-  ( justIf
+  ( onlyIf
   ) where
 
 
 {-|
   Contruct a value based on a boolean guard.
+
+  >>> "blue" `onlyIf` (len [1] == 1)
+  Just "blue"
 -}
-justIf ∷ α → Bool → Maybe α
-justIf a True = Just a
-justIf _ False = Nothing
+onlyIf ∷ α → Bool → Maybe α
+onlyIf a True = Just a
+onlyIf _ False = Nothing

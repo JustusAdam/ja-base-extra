@@ -1,5 +1,5 @@
 module Prelude.JAExtra
-  ( justIf
+  ( onlyIf
     -- * Tuples
   , curry2, curry3, curry4, curry5
   , uncurry2, uncurry3, uncurry4, uncurry5
