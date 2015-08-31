@@ -20,14 +20,43 @@ module Data.List.JAExtra
 
   -- * Tuple conversions
 
+  -- | \"to__N__Tuple\" functions match whether a list contains /only/ __N__ elements
+  -- yielding an __N__-'Tuple' containing those elements.
+  --
+  -- This can for example also be used to extract elements from a section of the
+  -- list as a 'Tuple' like so:
+  --
+  -- > to3Tuple . take 3
+
+
   , to1Value, to2Tuple, to3Tuple, to4Tuple, to5Tuple
   , to6Tuple, to7Tuple, to8Tuple, to9Tuple, to10Tuple
 
   -- * Zipping lists
 
+  -- | Zipping functions that do not stop when the shorter lists expire but when
+  -- the longer lists do.
+
+  -- ** Zipping to Maybe
+
+  -- | The fillZip__N__ function family takes __N__ lists and returns a list of
+  -- __N__-tuples.
+  --
+  -- Unlike 'zip' 'fillZip' does not stop when one of the lists is empty, but
+  -- keeps going inserting 'Nothing' for the missing values in the shorter lists.
+
   , fillZip, fillZip2, fillZip3, fillZip4, fillZip5
+
+  -- ** Zipping Monoids
+
+  -- | The monoidFillZip__N__ function family takes __N__ lists and returns a list of
+  -- __N__-tuples.
+  --
+  -- Unlike 'zip' 'monoidFillZip' does not stop when one of the lists is empty, but
+  -- keeps going inserting 'mempty' for the missing values in the shorter lists.
+
   , monoidFillZip, monoidFillZip2, monoidFillZip3, monoidFillZip4, monoidFillZip5
-  
+
   ) where
 
 
@@ -39,15 +68,7 @@ import Control.Monad
 {-|
   Completeness function that converts a singleton list into its only contained value.
 
-  This function is the single value version of the "to__N__Tuple" function family.
-
-  "to__N__Tuple" functions match whether a list contains /only/ __N__ elements
-  yielding an __N__-'Tuple' containing those elements.
-
-  This can for example also be used to extract elements from a section of the
-  list as a 'Tuple' like so:
-
-  > to3Tuple . take 3
+  This function is the single value version of the \"to__N__Tuple\" function family.
 -}
 to1Value ∷ [α] → Maybe α
 to1Value [a] = return a
@@ -146,7 +167,7 @@ get i
 
 
 {-|
-  @slice i j@ extracts a sublist from index i up to, but not including, j of length <= (j - i).
+  @slice i j@ extracts a sublist from index i up to, but not including, j.
 
   This function also accepts negative indexes which, again, are _|_ for infinite
   lists.
@@ -203,11 +224,7 @@ monoidFillZip5 (a:as) (b:bs) (c:cs) (d:ds) (e:es) = (a, b, c, d, e) : monoidFill
 
 
 {-|
-  The monoidFillZip__N__ function family takes __N__ lists and returns a list of
-  __N__-tuples.
-
-  Unlike 'zip' 'monoidFillZip' does not stop when one of the lists is empty, but
-  keeps going inserting 'mempty' for the missing values in the shorter lists.
+  Alias for 'monoidFillZip2'.
 -}
 monoidFillZip ∷ (Monoid α, Monoid β) ⇒ [α] → [β] → [(α, β)]
 monoidFillZip = monoidFillZip2
@@ -250,11 +267,7 @@ fillZip5 (a:as) (b:bs) (c:cs) (d:ds) (e:es) = (return a, return b, return c, ret
 
 
 {-|
-  The fillZip__N__ function family takes __N__ lists and returns a list of
-  __N__-tuples.
-
-  Unlike 'zip' 'fillZip' does not stop when one of the lists is empty, but
-  keeps going inserting 'Nothing' for the missing values in the shorter lists.
+  Alias for 'fillZip2'.
 -}
 fillZip ∷ [α] → [β] → [(Maybe α, Maybe β)]
 fillZip = fillZip2
