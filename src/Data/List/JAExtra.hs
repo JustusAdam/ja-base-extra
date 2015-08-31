@@ -1,14 +1,16 @@
 {-# LANGUAGE UnicodeSyntax #-}
 module Data.List.JAExtra
-  ( to1Value, to2Tuple, to3Tuple, to4Tuple, to5Tuple
-  , to6Tuple, to7Tuple, to8Tuple, to9Tuple, to10Tuple
-
-  , get
+  (
+    -- * Reading values
+    get
+    -- * Modifying lists
   , slice
-
-  , monoidFillZip, monoidFillZip2, monoidFillZip3, monoidFillZip4, monoidFillZip5
-
+    -- * Tuple conversions
+  , to1Value, to2Tuple, to3Tuple, to4Tuple, to5Tuple
+  , to6Tuple, to7Tuple, to8Tuple, to9Tuple, to10Tuple
+    -- * Zipping lists
   , fillZip, fillZip2, fillZip3, fillZip4, fillZip5
+  , monoidFillZip, monoidFillZip2, monoidFillZip3, monoidFillZip4, monoidFillZip5
   ) where
 
 
@@ -17,6 +19,19 @@ import Data.Tuple.JAExtra
 import Control.Monad
 
 
+{-|
+  Completeness function that converts a singleton list into its only contained value.
+
+  This function is the single value version of the "to__N__Tuple" function family.
+
+  "to__N__Tuple" functions match whether a list contains /only/ __N__ elements
+  yielding an __N__-'Tuple' containing those elements.
+
+  This can for example also be used to extract elements from a section of the
+  list as a 'Tuple' like so:
+
+  > to3Tuple . take 3
+-}
 to1Value ∷ [α] → Maybe α
 to1Value [a] = return a
 to1Value _ = Nothing
@@ -77,6 +92,32 @@ to10Tuple _ = Nothing
 {-# INLINE to10Tuple #-}
 
 
+{-|
+  The function that '!!' should be.
+
+  The 'get' function attempts to extract the element at the specified index from
+  the list, but instead of failing with an error returns a 'Maybe' value.
+
+  >>> get 0 [1, 2, 3]
+  Just 1
+  >>> get 2 [1, 2, 3]
+  Just 3
+  >>> get 3 [1, 2, 3]
+  Nothing
+
+  This function also accepts negative indexes, taking elements from the back of
+  the list, aka @get (-1)@ is the last element of the list and @get (-2)@ the
+  second to last.
+  Both positive and negative indexes are subject to boundary checks.
+
+  >>> get -1 [1, 2, 3]
+  Just 3
+  >>> get -4 [1, 2, 3]
+  Nothing
+
+  For infinite lists using negative indexes is _|_ (does not terminate). Positive indexes
+  do however do work with infinite lists.
+-}
 get ∷ Int → [α] → Maybe α
 get i
   | i >= 0 = get' i
@@ -87,6 +128,17 @@ get i
     get' i l@(_:xs) = (i-1) `get'` xs
 
 
+{-|
+  @slice i j@ extracts a sublist from index i up to, but not including, j of length <= (j - i).
+
+  This function also accepts negative indexes which, again, are _|_ for infinite
+  lists.
+
+  >>> slice 1 3 [1, 2, 3, 4, 5]
+  [2, 3]
+
+  The index rules are the same as with 'get'.
+-}
 slice ∷ Int → Int → [α] → [α]
 slice i j l = take (j' - i') . drop i' $ l
   where
@@ -133,6 +185,13 @@ monoidFillZip5 as bs cs ds [] = uncurry4 zip5 (unzip4 $ monoidFillZip4 as bs cs 
 monoidFillZip5 (a:as) (b:bs) (c:cs) (d:ds) (e:es) = (a, b, c, d, e) : monoidFillZip5 as bs cs ds es
 
 
+{-|
+  The monoidFillZip__N__ function family takes __N__ lists and returns a list of
+  __N__-tuples.
+
+  Unlike 'zip' 'monoidFillZip' does not stop when one of the lists is empty, but
+  keeps going inserting 'mempty' for the missing values in the shorter lists.
+-}
 monoidFillZip ∷ (Monoid α, Monoid β) ⇒ [α] → [β] → [(α, β)]
 monoidFillZip = monoidFillZip2
 
@@ -173,5 +232,12 @@ fillZip5 as bs cs ds [] = uncurry4 zip5 (unzip4 $ fillZip4 as bs cs ds) (repeat 
 fillZip5 (a:as) (b:bs) (c:cs) (d:ds) (e:es) = (return a, return b, return c, return d, return e) : fillZip5 as bs cs ds es
 
 
+{-|
+  The fillZip__N__ function family takes __N__ lists and returns a list of
+  __N__-tuples.
+
+  Unlike 'zip' 'fillZip' does not stop when one of the lists is empty, but
+  keeps going inserting 'Nothing' for the missing values in the shorter lists.
+-}
 fillZip ∷ [α] → [β] → [(Maybe α, Maybe β)]
 fillZip = fillZip2

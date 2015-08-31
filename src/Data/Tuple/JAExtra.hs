@@ -1,13 +1,34 @@
+{-|
+Module      : $HEADER$
+Description : Extra Tuple related functions.
+Copyright   : (c) Justus Adam, 2015
+License     : BDS3
+Maintainer  : dev@justus.science
+Stability   : experimental
+Portability : POSIX, Windows
+-}
 {-# LANGUAGE UnicodeSyntax #-}
 module Data.Tuple.JAExtra
-  ( uncurry2, uncurry3, uncurry4, uncurry5, uncurry6
-  , uncurry7, uncurry8, uncurry9, uncurry10
-
-  , curry2, curry3, curry4, curry5, curry6
+  (
+    -- * Currying
+    -- ** curry family
+    curry2, curry3, curry4, curry5, curry6
   , curry7, curry8, curry9, curry10
+    -- ** uncurry family
+  , uncurry2, uncurry3, uncurry4, uncurry5, uncurry6
+  , uncurry7, uncurry8, uncurry9, uncurry10
   ) where
 
 
+{-|
+  Alias for 'uncurry' according to my function naming conventions.
+
+  The following functions are all new members of the 'uncurry' function family.
+  Meaning they work exactly like 'uncurry' but on lerger functions/larger tuples.
+
+  uncurry__N__ then takes a function with __N__ arguments and an __N__-'Tuple'
+  and calls the function with the content of the Tuple.
+-}
 uncurry2 ∷ (a → b → c) → (a, b) → c
 uncurry2 = uncurry
 {-# INLINE uncurry2 #-}
@@ -53,6 +74,15 @@ uncurry10 f (a, b, c, d, e, f', g, h, i, j) = f a b c d e f' g h i j
 {-# INLINE uncurry10 #-}
 
 
+{-|
+  Alias for 'curry'.
+
+  The following funcions are members of the "curry" function family.
+
+  curry__N__ takes a function which has an __N__ 'Tuple' as first argument
+  and then __N__ arguments, calling the function value with the arguemnts
+  wrapped in a tuple.
+-}
 curry2 ∷ ((α, β) → γ) → α → β → γ
 curry2 = curry
 {-# INLINE curry2 #-}
