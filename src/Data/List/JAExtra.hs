@@ -1,16 +1,33 @@
+{-|
+Module      : $HEADER$
+Description : Extra functions on List.
+Copyright   : (c) Justus Adam, 2015
+License     : BDS3
+Maintainer  : dev@justus.science
+Stability   : experimental
+Portability : POSIX, Windows
+-}
 {-# LANGUAGE UnicodeSyntax #-}
 module Data.List.JAExtra
   (
-    -- * Reading values
+  -- * Reading values
+
     get
-    -- * Modifying lists
+
+  -- * Modifying lists
+
   , slice
-    -- * Tuple conversions
+
+  -- * Tuple conversions
+
   , to1Value, to2Tuple, to3Tuple, to4Tuple, to5Tuple
   , to6Tuple, to7Tuple, to8Tuple, to9Tuple, to10Tuple
-    -- * Zipping lists
+
+  -- * Zipping lists
+
   , fillZip, fillZip2, fillZip3, fillZip4, fillZip5
   , monoidFillZip, monoidFillZip2, monoidFillZip3, monoidFillZip4, monoidFillZip5
+  
   ) where
 
 

@@ -10,13 +10,18 @@ Portability : POSIX, Windows
 {-# LANGUAGE UnicodeSyntax #-}
 module Data.Tuple.JAExtra
   (
-    -- * Currying
-    -- ** curry family
+  -- * Currying
+
+  -- ** curry family
+
     curry2, curry3, curry4, curry5, curry6
   , curry7, curry8, curry9, curry10
-    -- ** uncurry family
+
+  -- ** uncurry family
+
   , uncurry2, uncurry3, uncurry4, uncurry5, uncurry6
   , uncurry7, uncurry8, uncurry9, uncurry10
+  
   ) where
 
 
@@ -29,7 +34,7 @@ module Data.Tuple.JAExtra
   uncurry__N__ then takes a function with __N__ arguments and an __N__-'Tuple'
   and calls the function with the content of the Tuple.
 -}
-uncurry2 ∷ (a → b → c) → (a, b) → c
+uncurry2 ∷ (α → β → γ) → (α, β) → γ
 uncurry2 = uncurry
 {-# INLINE uncurry2 #-}
 

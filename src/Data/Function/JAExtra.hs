@@ -1,8 +1,19 @@
+{-|
+Module      : $HEADER$
+Description : Extra functions for working with functions.
+Copyright   : (c) Justus Adam, 2015
+License     : BDS3
+Maintainer  : dev@justus.science
+Stability   : experimental
+Portability : POSIX, Windows
+-}
 {-# LANGUAGE UnicodeSyntax #-}
 module Data.Function.JAExtra
   (
-    -- * Stuffing functions
+  -- * Stuffing functions
+
     stuff2, stuff3, stuff4, stuff5
+
   ) where
 
 

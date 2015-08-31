@@ -1,13 +1,32 @@
+{-|
+Module      : $HEADER$
+Description : The most useful out of the common extra functions.
+Copyright   : (c) Justus Adam, 2015
+License     : BDS3
+Maintainer  : dev@justus.science
+Stability   : experimental
+Portability : POSIX, Windows
+-}
 module Prelude.JAExtra
-  ( onlyIf
-    -- * Tuples
+  (
+  -- * Misc
+
+    onlyIf
+
+  -- * Tuples
+
   , curry2, curry3, curry4, curry5
   , uncurry2, uncurry3, uncurry4, uncurry5
+
   -- * Lists
+
   , fillZip, fillZip3
   , monoidFillZip, monoidFillZip3
+
   -- * Functions
+
   , stuff2, stuff3
+
   ) where
 
 

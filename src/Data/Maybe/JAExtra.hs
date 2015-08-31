@@ -1,3 +1,12 @@
+{-|
+Module      : $HEADER$
+Description : Extra functions on Maybe's.
+Copyright   : (c) Justus Adam, 2015
+License     : BDS3
+Maintainer  : dev@justus.science
+Stability   : experimental
+Portability : POSIX, Windows
+-}
 {-# LANGUAGE UnicodeSyntax #-}
 module Data.Maybe.JAExtra
   ( onlyIf
