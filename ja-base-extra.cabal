@@ -29,3 +29,15 @@ library
   default-language:    Haskell2010
   ghc-options:
     -Wall
+
+
+source-repository head
+  type:     git
+  location: git://github.com/JustusAdam/ja-base-extra.git
+
+
+source-repository this
+  type:     git
+  branch:   master
+  location: git://github.com/JustusAdam/ja-base-extra.git
+  tag:      0.1.0.0
