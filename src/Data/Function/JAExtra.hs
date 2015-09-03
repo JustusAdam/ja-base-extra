@@ -21,6 +21,22 @@ module Data.Function.JAExtra
 
     stuff2, stuff3, stuff4, stuff5
 
+  -- * Constant functions
+
+  -- | Functions from the const family behave very much like 'const' function
+  -- from prelude. But for more arguments.
+  --
+  -- The const__N__ function takes a value and __N__ arguments of
+  -- arbitrary type returning the value after all arguments have been supplied.
+  --
+  -- The same effect can be reached by chaining 'const' but does not look as good.
+  --
+  -- @
+  --  const3 v == (const . const . const) v
+  -- @
+
+  , const1, const2, const3, const4, const5
+
   ) where
 
 
@@ -38,3 +54,25 @@ stuff4 f a = f a a a a
 
 stuff5 ∷ (α → α → α → α → α → β) → α → β
 stuff5 f a = f a a a a a
+
+
+-- | Alias for the 'const' function from prelude in the const function family
+-- naming scheme.
+const1 ∷ α → β → α
+const1 = const
+
+
+const2 ∷ γ → α → β → γ
+const2 = const1 . const1
+
+
+const3 ∷ δ → α → β → γ → δ
+const3 = const2 . const1
+
+
+const4 ∷ ε → α → β → γ → δ → ε
+const4 = const3 . const1
+
+
+const5 ∷ ζ → α → β → γ → δ → ε → ζ
+const5 = const4 . const1

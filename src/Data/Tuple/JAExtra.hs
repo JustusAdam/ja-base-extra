@@ -75,12 +75,14 @@ uncurry8 f (a, b, c, d, e, f', g, h) = f a b c d e f' g h
 {-# INLINE uncurry8 #-}
 
 
-uncurry9 ∷ (α → β → γ → δ → ε → ζ → η → θ → ι → κ) → (α, β, γ, δ, ε, ζ, η, θ, ι) → κ
+uncurry9 ∷ (α → β → γ → δ → ε → ζ → η → θ → ι → κ) →
+           (α, β, γ, δ, ε, ζ, η, θ, ι) → κ
 uncurry9 f (a, b, c, d, e, f', g, h, i) = f a b c d e f' g h i
 {-# INLINE uncurry9 #-}
 
 
-uncurry10 ∷ (α → β → γ → δ → ε → ζ → η → θ → ι → κ → λ) → (α, β, γ, δ, ε, ζ, η, θ, ι, κ) → λ
+uncurry10 ∷ (α → β → γ → δ → ε → ζ → η → θ → ι → κ → λ) →
+            (α, β, γ, δ, ε, ζ, η, θ, ι, κ) → λ
 uncurry10 f (a, b, c, d, e, f', g, h, i, j) = f a b c d e f' g h i j
 {-# INLINE uncurry10 #-}
 
@@ -123,10 +125,13 @@ curry8 f a b c d e f' g h = f (a, b, c, d, e, f', g, h)
 {-# INLINE curry8 #-}
 
 
-curry9 ∷ ((α, β, γ, δ, ε, ζ, η, θ, ι) → κ) → α → β → γ → δ → ε → ζ → η → θ → ι → κ
+curry9 ∷ ((α, β, γ, δ, ε, ζ, η, θ, ι) → κ) →
+         α → β → γ → δ → ε → ζ → η → θ → ι → κ
 curry9 f a b c d e f' g h i = f (a, b, c, d, e, f', g, h, i)
 {-# INLINE curry9 #-}
 
-curry10 ∷ ((α, β, γ, δ, ε, ζ, η, θ, ι, κ) → λ) → α → β → γ → δ → ε → ζ → η → θ → ι → κ → λ
+
+curry10 ∷ ((α, β, γ, δ, ε, ζ, η, θ, ι, κ) → λ) →
+          α → β → γ → δ → ε → ζ → η → θ → ι → κ → λ
 curry10 f a b c d e f' g h i j = f (a, b, c, d, e, f', g, h, i, j)
 {-# INLINE curry10 #-}
