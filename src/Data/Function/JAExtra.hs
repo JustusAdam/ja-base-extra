@@ -18,8 +18,16 @@ module Data.Function.JAExtra
   -- Sometimes it is desirable to call some of these arguments with the same value
   -- and those functions here allow you to do that in the
   -- \"do-not-repeat-yourself\" way.
+  --
+  -- Multiple argument stffing can also be achieved by chaining 'stuff'.
+  --
+  -- @
+  --  stuff4 f == (stuff . stuff . stuff) f
+  -- @
+  --
+  -- In theory @stuff1@ would be 'id'.
 
-    stuff2, stuff3, stuff4, stuff5
+    stuff, stuff2, stuff3, stuff4, stuff5
 
   -- * Constant functions
 
@@ -40,20 +48,25 @@ module Data.Function.JAExtra
   ) where
 
 
+-- | Alias for 'stuff2'
+stuff ∷ (α → α → β) → α → β
+stuff f a = f a a
+
+
 stuff2 ∷ (α → α → β) → α → β
-stuff2 f a = f a a
+stuff2 = stuff
 
 
 stuff3 ∷ (α → α → α → β) → α → β
-stuff3 f a = f a a a
+stuff3 = stuff2 . stuff2
 
 
 stuff4 ∷ (α → α → α → α → β) → α → β
-stuff4 f a = f a a a a
+stuff4 = stuff3 . stuff2
 
 
 stuff5 ∷ (α → α → α → α → α → β) → α → β
-stuff5 f a = f a a a a a
+stuff5 = stuff4 . stuff2
 
 
 -- | Alias for the 'const' function from prelude in the const function family
