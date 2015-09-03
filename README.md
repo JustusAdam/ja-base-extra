@@ -1,4 +1,4 @@
-# ja-base-extra
+# ja-base-extra [![Hackage Status](https://img.shields.io/hackage/v/ja-base-extra.svg)](https://hackage.haskell.org/package/ja-base-extra)
 
 Or **j**ustus-**a**dam-base-extra. That's the expanded form.
 
@@ -18,4 +18,4 @@ This library is named after me for two reasons:
 
 ## Documentation
 
-Haddock docks coming soon™
+Haddock documentation is provided. If you are unhappy with the documentation [let me know](mailto:dev@justus.science) or [submit a pull request](https://github.com/JustusAdam/ja-base-extra/compare).
