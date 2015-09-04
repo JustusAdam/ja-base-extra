@@ -1,10 +1,10 @@
 name:                ja-base-extra
 version:             0.2.0.0
 synopsis:            Extra functions I require in base
-description:
-  This package encompasses a collection of general functions that only depend on
-  the base library, which I have acumulated through writing Haskell code and
-  judged general and useful enough to extract.
+description:         This package encompasses a collection of general functions
+                     that only depend on the base library, which I have
+                     acumulated through writing Haskell code and judged general
+                     and useful enough to extract.
 license:             BSD3
 license-file:        LICENSE
 author:              Justus Adam
@@ -14,7 +14,7 @@ category:            Development
 build-type:          Simple
 extra-source-files:  README.md
 cabal-version:       >=1.10
-tested-with: GHC >= 7.0.1 && < 7.10.2
+tested-with:         GHC >= 7.0.1 && < 7.10.2
 
 library
   exposed-modules:
