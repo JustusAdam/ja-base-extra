@@ -1,5 +1,5 @@
 name:                ja-base-extra
-version:             0.1.0.0
+version:             0.2.0.0
 synopsis:            Extra functions I require in base
 description:
   This package encompasses a collection of general functions that only depend on
@@ -14,6 +14,7 @@ category:            Development
 build-type:          Simple
 extra-source-files:  README.md
 cabal-version:       >=1.10
+tested-with: GHC >= 7.0.1 && < 7.10.2
 
 library
   exposed-modules:
@@ -24,7 +25,7 @@ library
     Prelude.JAExtra
   -- other-modules:
   -- other-extensions:
-  build-depends:       base >= 4.0 && < 5
+  build-depends:       base >= 4.3 && < 5
   hs-source-dirs:      src
   default-language:    Haskell2010
   ghc-options:

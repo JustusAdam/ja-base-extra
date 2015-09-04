@@ -25,7 +25,7 @@ module Prelude.JAExtra
 
   -- * Functions
 
-  , stuff2, stuff3
+  , stuffWith2, stuffWith3
 
   ) where
 
