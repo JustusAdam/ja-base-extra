@@ -1,4 +1,4 @@
-# ja-base-extra [![Hackage Status](https://img.shields.io/hackage/v/ja-base-extra.svg)][hackage]
+# ja-base-extra [![Hackage Status](https://img.shields.io/hackage/v/ja-base-extra.svg)][hackage] [![Travis Status](https://img.shields.io/travis/JustusAdam/ja-base-extra.svg)](https://travis-ci.org/JustusAdam/ja-base-extra)
 
 Or **j**ustus-**a**dam-base-extra, which is the expanded form.
 

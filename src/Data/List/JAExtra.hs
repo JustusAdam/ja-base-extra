@@ -61,9 +61,10 @@ module Data.List.JAExtra
   ) where
 
 
-import Data.List
-import Data.Tuple.JAExtra
-import Control.Monad
+import           Control.Monad
+import           Data.List
+import           Data.Monoid
+import           Data.Tuple.JAExtra
 
 
 {-|
