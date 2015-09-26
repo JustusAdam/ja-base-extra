@@ -1,5 +1,5 @@
 name:                ja-base-extra
-version:             0.2.0.0
+version:             0.2.1.0
 synopsis:            Extra functions I require in base
 description:         This package encompasses a collection of general functions
                      that only depend on the base library, which I have
@@ -41,4 +41,4 @@ source-repository this
   type:     git
   branch:   master
   location: git://github.com/JustusAdam/ja-base-extra.git
-  tag:      0.1.0.0
+  tag:      0.2.0.1
