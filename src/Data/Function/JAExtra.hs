@@ -67,6 +67,15 @@ module Data.Function.JAExtra
 
   , const1, const2, const3, const4, const5
 
+  -- * Discard functions
+
+  -- | Functions from the discard family behave opposite to functions from the
+  -- const family.
+  --
+  -- Whereas const__N__ will retin its first value and discard all __N__ values,
+  -- discard__N__ wil discard the first __N__ values, retaining the last one.
+  , discard, discard1, discard2, discard3, discard4, discard5
+  
   ) where
 
 
@@ -111,3 +120,27 @@ const4 = const3 . const1
 
 const5 ∷ ζ → α → β → γ → δ → ε → ζ
 const5 = const4 . const1
+
+
+discard ∷ α → β → β
+discard = flip const
+
+
+discard1 ∷ α → β → β
+discard1 = discard
+
+
+discard2 ∷ α → β → γ -> γ
+discard2 = const . discard
+
+
+discard3 ∷ α → β → γ → δ → δ
+discard3 = const2 . discard
+
+
+discard4 ∷ α → β → γ → δ → ε → ε
+discard4 = const3 . discard
+
+
+discard5 ∷ α → β → γ → δ → ε → ζ → ζ
+discard5 = const4 . discard
