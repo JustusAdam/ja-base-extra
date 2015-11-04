@@ -32,6 +32,18 @@ listSpec = do
     it "returns the entire head of the list if n is negatively out of bounds" $
       slice (-100) 2 [1,2,3,4] `shouldBe` [1,2]
 
+    it "returns the empty list if n > m (both positive)" $
+      slice 3 2 [1,2,3,4] `shouldBe` []
+
+    it "returns the empty list if n > m (both negative)" $
+      slice (-2) (-3) [1,2,3,4] `shouldBe` []
+
+    it "returns the mepty list if n references an element after m (n negative)" $
+      slice (-3) 0 [1,2,3,4] `shouldBe` []
+
+    it "returns the mepty list if n references an element after m (m negative)" $
+      slice 2 (-3) [1,2,3,4] `shouldBe` []
+
   describe "setIndex" $ do
     it "sets the index if it exists" $
       setIndex 1 'e' "hallo" `shouldBe` Just "hello"

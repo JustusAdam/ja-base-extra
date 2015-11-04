@@ -185,11 +185,16 @@ get index
 slice ∷ Int → Int → [α] → [α]
 slice start end list = take (end' - start') $ drop start' list
   where
+    len = length list
     turn i
-      | i < 0     = length list + i
+      | i < 0     =
+        if (-i) >= len
+          then 0
+          else len + i
       | otherwise = i
     end'= turn end
     start'= turn start
+{-# INLINEABLE slice #-}
 
 
 monoidFillZip2 ∷ (Monoid α, Monoid β) ⇒ [α] → [β] → [(α, β)]
@@ -305,7 +310,9 @@ fillZip = fillZip2
 -}
 setIndex :: Int -> a -> [a] -> Maybe [a]
 setIndex i e l
-  | i < 0 = setIndex (length l - i) e l
+  | i < 0 = if (- i) > length l
+              then Nothing
+              else setIndex (length l + i) e l
   | i == 0 = Just (e:l)
   | otherwise =
     case rest of
