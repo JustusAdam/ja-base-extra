@@ -31,6 +31,16 @@ library
   ghc-options:
     -Wall
 
+test-suite unittests
+  main-is: Spec.hs
+  build-depends:
+      base >=4.7 && <5
+    , ja-base-extra
+    , hspec
+  type: exitcode-stdio-1.0
+  default-language: Haskell2010
+  hs-source-dirs: test/unit
+
 
 source-repository head
   type:     git

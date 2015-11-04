@@ -16,7 +16,7 @@ module Data.List.JAExtra
 
   -- * Modifying lists
 
-  , slice
+  , slice, setIndex, setPred
 
   -- * Tuple conversions
 
@@ -183,7 +183,7 @@ get index
   The index rules are the same as with 'get'.
 -}
 slice ∷ Int → Int → [α] → [α]
-slice start end list = take (end' - start') . drop start' $ list
+slice start end list = take (end' - start') $ drop start' list
   where
     turn i
       | i < 0     = length list + i
@@ -293,3 +293,35 @@ fillZip5 (a:as) (b:bs) (c:cs) (d:ds) (e:es) =
 -}
 fillZip ∷ [α] → [β] → [(Maybe α, Maybe β)]
 fillZip = fillZip2
+
+
+{-|
+  Set the element at a specific index in a list.
+
+  Accepts negative indexes, in which case the index is counted from the end of
+  the list (last element == -1).
+
+  Fails if | index | >= length of the list.
+-}
+setIndex :: Int -> a -> [a] -> Maybe [a]
+setIndex i e l
+  | i < 0 = setIndex (length l - i) e l
+  | i == 0 = Just (e:l)
+  | otherwise =
+    case rest of
+      (_:tail') -> Just (head' ++ (e:tail'))
+      _ -> Nothing
+  where
+    (head', rest) = splitAt i l
+
+
+{-|
+  Replace the first element in the list, for which the predicate holds true.
+-}
+setPred :: (a -> Bool) -> a -> [a] -> Maybe [a]
+setPred predicate e l =
+  case rest of
+    (_:tail') -> Just (head' ++ (e:tail'))
+    _ -> Nothing
+  where
+    (head', rest) = break predicate l
